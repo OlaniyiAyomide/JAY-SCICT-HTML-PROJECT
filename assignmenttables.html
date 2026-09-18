@@ -1,0 +1,246 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Ludo Game</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #222;
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 20px 0 10px;
+        }
+
+        #turn {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        /* Ludo Board */
+        .board {
+            width: 600px;
+            height: 600px;
+            max-width: 95vw;
+            max-height: 95vw;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(15, 1fr);
+            grid-template-rows: repeat(15, 1fr);
+            border: 5px solid #111;
+            background: white;
+        }
+
+        .cell {
+            border: 1px solid #999;
+            background: white;
+            position: relative;
+        }
+
+        /* Home areas */
+        .red-home {
+            grid-column: 1 / 7;
+            grid-row: 1 / 7;
+            background: #e74c3c;
+        }
+
+        .green-home {
+            grid-column: 10 / 16;
+            grid-row: 1 / 7;
+            background: #2ecc71;
+        }
+
+        .yellow-home {
+            grid-column: 1 / 7;
+            grid-row: 10 / 16;
+            background: #f1c40f;
+        }
+
+        .blue-home {
+            grid-column: 10 / 16;
+            grid-row: 10 / 16;
+            background: #3498db;
+        }
+
+        /* Center */
+        .center {
+            grid-column: 7 / 10;
+            grid-row: 7 / 10;
+            background: linear-gradient(
+                45deg,
+                #e74c3c 50%,
+                #2ecc71 50%
+            );
+        }
+
+        /* Pieces */
+        .piece {
+            width: 70%;
+            height: 70%;
+            border-radius: 50%;
+            position: absolute;
+            top: 15%;
+            left: 15%;
+            border: 3px solid white;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .red {
+            background: #c0392b;
+        }
+
+        .green {
+            background: #27ae60;
+        }
+
+        .yellow {
+            background: #d4ac0d;
+        }
+
+        .blue {
+            background: #2980b9;
+        }
+
+        /* Controls */
+        .controls {
+            margin: 20px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #fff;
+        }
+
+        button:hover {
+            background: #ddd;
+        }
+
+        #dice {
+            font-size: 40px;
+            margin: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .piece {
+                width: 60%;
+                height: 60%;
+                top: 20%;
+                left: 20%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🎲 Simple Ludo</h1>
+
+    <div id="turn">Red's Turn</div>
+
+    <div class="board">
+
+        <!-- Red Home -->
+        <div class="cell red-home">
+            <div class="piece red"></div>
+        </div>
+
+        <!-- Green Home -->
+        <div class="cell green-home">
+            <div class="piece green"></div>
+        </div>
+
+        <!-- Yellow Home -->
+        <div class="cell yellow-home">
+            <div class="piece yellow"></div>
+        </div>
+
+        <!-- Blue Home -->
+        <div class="cell blue-home">
+            <div class="piece blue"></div>
+        </div>
+
+        <!-- Center -->
+        <div class="cell center"></div>
+
+    </div>
+
+    <div class="controls">
+
+        <div id="dice">🎲</div>
+
+        <button onclick="rollDice()">Roll Dice</button>
+
+    </div>
+
+
+    <script>
+
+        // Players
+        const players = [
+            "Red",
+            "Green",
+            "Yellow",
+            "Blue"
+        ];
+
+        let currentPlayer = 0;
+        let dice = 0;
+
+        // Roll dice
+        function rollDice() {
+
+            dice = Math.floor(Math.random() * 6) + 1;
+
+            document.getElementById("dice").textContent = dice;
+
+            alert(
+                players[currentPlayer] +
+                " rolled " +
+                dice
+            );
+
+            // Change player
+            if (dice !== 6) {
+                nextPlayer();
+            } else {
+                alert(
+                    players[currentPlayer] +
+                    " rolled a 6! Roll again."
+                );
+            }
+        }
+
+        // Change turn
+        function nextPlayer() {
+
+            currentPlayer++;
+
+            if (currentPlayer >= players.length) {
+                currentPlayer = 0;
+            }
+
+            document.getElementById("turn").textContent =
+                players[currentPlayer] + "'s Turn";
+        }
+
+    </script>
+
+</body>
+</html>
+```

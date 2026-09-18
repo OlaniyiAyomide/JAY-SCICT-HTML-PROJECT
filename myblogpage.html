@@ -1,0 +1,411 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Tech Career Blog</title>
+
+    <style>
+
+        /* General Styling */
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fb;
+            color: #222;
+        }
+
+
+        /* Navigation Bar */
+
+        nav {
+            background-color: #111827;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+
+        /* Hero Section */
+
+        .hero {
+            background-color: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 70px 20px;
+        }
+
+        .hero h1 {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 19px;
+            max-width: 700px;
+            margin: auto;
+            line-height: 1.6;
+        }
+
+
+        /* Main Content */
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+
+        /* Blog Cards */
+
+        .card {
+            background-color: white;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h2 {
+            color: #0f172a;
+        }
+
+        .card p {
+            line-height: 1.7;
+        }
+
+
+        /* Images */
+
+        .blog-image {
+            width: 100%;
+            max-height: 450px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+
+        /* Skills */
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .skill {
+            background-color: #e0f2fe;
+            color: #0369a1;
+            padding: 12px 20px;
+            border-radius: 20px;
+        }
+
+
+        /* Video */
+
+        video {
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+
+        /* Career Journey */
+
+        .journey {
+            padding-left: 20px;
+        }
+
+        .journey li {
+            margin-bottom: 15px;
+        }
+
+
+        /* Footer */
+
+        footer {
+            background-color: #111827;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 50px;
+        }
+
+
+        /* Mobile Screen */
+
+        @media (max-width: 600px) {
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 8px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- Navigation -->
+
+    <nav>
+
+        <a href="#home">Home</a>
+
+        <a href="#about">About</a>
+
+        <a href="#skills">Skills</a>
+
+        <a href="#journey">My Journey</a>
+
+        <a href="#contact">Contact</a>
+
+    </nav>
+
+
+
+    <!-- Hero Section -->
+
+    <section class="hero" id="home">
+
+        <h1>My Tech Career Journey 🚀</h1>
+
+        <p>
+            Welcome to my blog! This is where I share my journey,
+            experiences and lessons as I build my career in technology.
+        </p>
+
+    </section>
+
+
+
+    <!-- Main Content -->
+
+    <div class="container">
+
+
+        <!-- About Section -->
+
+        <section class="card" id="about">
+
+            <h2>👨‍💻 How My Tech Journey Started</h2>
+
+            <p>
+                My interest in technology started with curiosity.
+                I wanted to understand how computers work and how
+                websites and applications are created.
+            </p>
+
+            <p>
+                As I continued learning, I discovered that technology
+                is much bigger than just using computers. It involves
+                programming, problem solving, artificial intelligence,
+                cybersecurity, software development and many other fields.
+            </p>
+
+            <img
+                class="blog-image"
+                src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97"
+                alt="Person coding on a laptop"
+            >
+
+        </section>
+
+
+
+        <!-- Skills Section -->
+
+        <section class="card" id="skills">
+
+            <h2>💻 Technologies I Am Learning</h2>
+
+            <p>
+                Technology is a continuous learning process.
+                These are some of the skills I am currently developing:
+            </p>
+
+            <div class="skills">
+
+                <div class="skill">HTML</div>
+
+                <div class="skill">CSS</div>
+
+                <div class="skill">Python</div>
+
+                <div class="skill">JavaScript</div>
+
+                <div class="skill">Artificial Intelligence</div>
+
+                <div class="skill">Machine Learning</div>
+
+                <div class="skill">Software Engineering</div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Video Section -->
+
+        <section class="card">
+
+            <h2>🎥 A Little Inspiration</h2>
+
+            <p>
+                Technology is all about learning, experimenting
+                and building new things. Videos can be a great way
+                to understand difficult concepts and stay motivated.
+            </p>
+
+            <video controls>
+
+                <source
+                    src="https://www.w3schools.com/html/mov_bbb.mp4"
+                    type="video/mp4"
+                >
+
+                Your browser does not support video.
+
+            </video>
+
+        </section>
+
+
+
+        <!-- Career Journey -->
+
+        <section class="card" id="journey">
+
+            <h2>🚀 My Career Journey</h2>
+
+            <ul class="journey">
+
+                <li>
+                    Started learning the basics of computers.
+                </li>
+
+                <li>
+                    Started learning HTML and CSS.
+                </li>
+
+                <li>
+                    Learned about software engineering.
+                </li>
+
+                <li>
+                    Started learning Python and programming.
+                </li>
+
+                <li>
+                    Began exploring Artificial Intelligence
+                    and Machine Learning.
+                </li>
+
+                <li>
+                    Started building small projects to improve
+                    my practical skills.
+                </li>
+
+                <li>
+                    Continuing to learn and develop my skills
+                    for a career in technology.
+                </li>
+
+            </ul>
+
+        </section>
+
+
+
+        <!-- Lesson Section -->
+
+        <section class="card">
+
+            <h2>📚 What I Have Learned</h2>
+
+            <p>
+                One of the biggest lessons I have learned is that
+                becoming good at technology takes time. You do not
+                need to know everything before you start building.
+            </p>
+
+            <p>
+                Making mistakes is part of the process. Every error
+                message, failed project and difficult concept is
+                another opportunity to learn.
+            </p>
+
+            <p>
+                My goal is to keep learning, keep building and
+                eventually use technology to solve real-world problems.
+            </p>
+
+        </section>
+
+
+
+        <!-- Contact -->
+
+        <section class="card" id="contact">
+
+            <h2>📩 Contact Me</h2>
+
+            <p>
+                Thanks for reading my tech career blog!
+                Feel free to connect with me and follow my journey.
+            </p>
+
+            <p>
+                Email: myemail@example.com
+            </p>
+
+        </section>
+
+
+    </div>
+
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            © 2026 My Tech Career Blog | Built with HTML & CSS
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
+```

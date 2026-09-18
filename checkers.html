@@ -1,0 +1,493 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Checkers Game</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #222;
+            color: white;
+        }
+
+        h1 {
+            margin-top: 20px;
+        }
+
+        #turn {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        /* Checkers Board */
+
+        .board {
+            width: 480px;
+            height: 480px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: repeat(8, 1fr);
+
+            border: 5px solid white;
+        }
+
+        /* Board Squares */
+
+        .square {
+            width: 60px;
+            height: 60px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .light {
+            background-color: #f0d9b5;
+        }
+
+        .dark {
+            background-color: #b58863;
+        }
+
+        /* Checkers Pieces */
+
+        .piece {
+            width: 45px;
+            height: 45px;
+
+            border-radius: 50%;
+
+            cursor: pointer;
+
+            border: 3px solid white;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .black {
+            background-color: black;
+        }
+
+        /* Selected Piece */
+
+        .selected {
+            border: 5px solid yellow;
+        }
+
+        /* King */
+
+        .king::after {
+            content: "♛";
+
+            color: gold;
+
+            font-size: 25px;
+        }
+
+        button {
+            margin-top: 20px;
+
+            padding: 10px 20px;
+
+            font-size: 16px;
+
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>♟ Checkers Game</h1>
+
+    <div id="turn">
+        Red's Turn
+    </div>
+
+    <div class="board" id="board"></div>
+
+    <button onclick="resetGame()">
+        Restart Game
+    </button>
+
+
+    <script>
+
+        const board = document.getElementById("board");
+
+        const turnText = document.getElementById("turn");
+
+        let currentPlayer = "red";
+
+        let selectedPiece = null;
+
+        let selectedRow = null;
+
+        let selectedCol = null;
+
+
+        // Create the board
+
+        function createBoard() {
+
+            board.innerHTML = "";
+
+            for (let row = 0; row < 8; row++) {
+
+                for (let col = 0; col < 8; col++) {
+
+                    const square = document.createElement("div");
+
+                    square.classList.add("square");
+
+
+                    // Create light and dark squares
+
+                    if ((row + col) % 2 === 0) {
+
+                        square.classList.add("light");
+
+                    } else {
+
+                        square.classList.add("dark");
+
+                    }
+
+
+                    square.dataset.row = row;
+
+                    square.dataset.col = col;
+
+
+                    square.onclick = function() {
+
+                        movePiece(row, col);
+
+                    };
+
+
+                    board.appendChild(square);
+
+                }
+
+            }
+
+
+            // Add Red pieces
+
+            for (let row = 5; row < 8; row++) {
+
+                for (let col = 0; col < 8; col++) {
+
+                    if ((row + col) % 2 !== 0) {
+
+                        addPiece(row, col, "red");
+
+                    }
+
+                }
+
+            }
+
+
+            // Add Black pieces
+
+            for (let row = 0; row < 3; row++) {
+
+                for (let col = 0; col < 8; col++) {
+
+                    if ((row + col) % 2 !== 0) {
+
+                        addPiece(row, col, "black");
+
+                    }
+
+                }
+
+            }
+
+        }
+
+
+        // Add a piece
+
+        function addPiece(row, col, color) {
+
+            const squares = document.querySelectorAll(".square");
+
+            const index = row * 8 + col;
+
+            const square = squares[index];
+
+
+            const piece = document.createElement("div");
+
+            piece.classList.add("piece");
+
+            piece.classList.add(color);
+
+
+            piece.onclick = function(event) {
+
+                event.stopPropagation();
+
+                selectPiece(piece, row, col);
+
+            };
+
+
+            square.appendChild(piece);
+
+        }
+
+
+        // Select a piece
+
+        function selectPiece(piece, row, col) {
+
+            if (!piece.classList.contains(currentPlayer)) {
+
+                return;
+
+            }
+
+
+            // Remove previous selection
+
+            document.querySelectorAll(".piece").forEach(function(p) {
+
+                p.classList.remove("selected");
+
+            });
+
+
+            piece.classList.add("selected");
+
+
+            selectedPiece = piece;
+
+            selectedRow = row;
+
+            selectedCol = col;
+
+        }
+
+
+        // Move the piece
+
+        function movePiece(row, col) {
+
+            if (selectedPiece === null) {
+
+                return;
+
+            }
+
+
+            // Make sure destination is empty
+
+            const squares = document.querySelectorAll(".square");
+
+            const destination = squares[row * 8 + col];
+
+
+            if (destination.children.length > 0) {
+
+                return;
+
+            }
+
+
+            const rowDifference = row - selectedRow;
+
+            const colDifference = col - selectedCol;
+
+
+            // Normal movement
+
+            if (
+                Math.abs(rowDifference) === 1 &&
+                Math.abs(colDifference) === 1
+            ) {
+
+                // Red moves upward
+
+                if (
+                    currentPlayer === "red" &&
+                    rowDifference !== -1
+                ) {
+
+                    return;
+
+                }
+
+
+                // Black moves downward
+
+                if (
+                    currentPlayer === "black" &&
+                    rowDifference !== 1
+                ) {
+
+                    return;
+
+                }
+
+
+                destination.appendChild(selectedPiece);
+
+                checkKing(row);
+
+                changeTurn();
+
+            }
+
+
+            // Capture
+
+            else if (
+                Math.abs(rowDifference) === 2 &&
+                Math.abs(colDifference) === 2
+            ) {
+
+                const middleRow =
+                    selectedRow + rowDifference / 2;
+
+                const middleCol =
+                    selectedCol + colDifference / 2;
+
+
+                const middleSquare =
+                    squares[middleRow * 8 + middleCol];
+
+
+                // Check if opponent exists
+
+                if (
+                    middleSquare.children.length > 0 &&
+                    !middleSquare.children[0]
+                        .classList
+                        .contains(currentPlayer)
+                ) {
+
+                    // Remove opponent
+
+                    middleSquare.removeChild(
+                        middleSquare.children[0]
+                    );
+
+
+                    // Move piece
+
+                    destination.appendChild(selectedPiece);
+
+
+                    checkKing(row);
+
+                    changeTurn();
+
+                }
+
+            }
+
+        }
+
+
+        // Turn piece into a king
+
+        function checkKing(row) {
+
+            if (
+                currentPlayer === "red" &&
+                row === 0
+            ) {
+
+                selectedPiece.classList.add("king");
+
+            }
+
+
+            if (
+                currentPlayer === "black" &&
+                row === 7
+            ) {
+
+                selectedPiece.classList.add("king");
+
+            }
+
+        }
+
+
+        // Change player
+
+        function changeTurn() {
+
+            selectedPiece.classList.remove("selected");
+
+            selectedPiece = null;
+
+            selectedRow = null;
+
+            selectedCol = null;
+
+
+            if (currentPlayer === "red") {
+
+                currentPlayer = "black";
+
+                turnText.textContent = "Black's Turn";
+
+            } else {
+
+                currentPlayer = "red";
+
+                turnText.textContent = "Red's Turn";
+
+            }
+
+        }
+
+
+        // Restart game
+
+        function resetGame() {
+
+            currentPlayer = "red";
+
+            selectedPiece = null;
+
+            selectedRow = null;
+
+            selectedCol = null;
+
+            turnText.textContent = "Red's Turn";
+
+            createBoard();
+
+        }
+
+
+        // Start the game
+
+        createBoard();
+
+    </script>
+
+</body>
+</html>
+```
