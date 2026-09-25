@@ -1,0 +1,196 @@
+
+*
+{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.top-container {
+    position: relative;
+}
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+.skye-img {
+    width: 100vw;
+    height: 30vh;
+    position: fixed;
+}
+.aeroplane {
+    animation: aeroplane 2s linear -2s infinite normal none;
+    position: absolute;
+    right: 2000px;
+    top: 0;
+}
+@keyframes aeroplane
+{
+    0%{
+        transform: translate(2000px);
+    }
+}
+.helicopter {
+    animation: helicopter 3s linear 0.5s infinite normal none;
+    position: absolute;
+    top: 10px;
+    right: 2000px;
+}
+.houses {
+    width: 95vw;
+    height: 25vh;
+    position: absolute;
+    right: 35px;
+    top: 100px;
+}
+.walk-way {
+    height: 50px;
+    background-color: #716C8A;
+    background-image: url(interlock.jpg);
+    width: 100vw;
+    position: absolute;
+    bottom: 600px;
+}
+.ped-boy {
+    animation: ped-boy 13s linear 2s infinite normal none;
+    position: absolute;
+    right: 2100px;
+    bottom: 25px;
+}
+.ped-woman {
+    animation: ped-woman 10s linear 1s infinite reverse none;
+    position: absolute;
+    right: 2100px;
+    bottom: 10px;
+}
+.road {
+    position: relative;
+    top: 410px;
+}
+.right-lane, .left-lane {
+    position: relative;
+}
+.road-1, .road-2 {
+    width: 100vw;
+    height: 260px;
+}
+.taxi-1 {
+    animation: taxi-1 3s linear 0s infinite normal;
+}
+.taxi-1a {
+    position: absolute;
+    top: 20px;
+    right: 200px;
+}
+.taxi-1b{
+    position: absolute;
+    top: 130px;
+    right: 2200px;
+}
+.taxi-1c{
+    position: absolute;
+    top: 0px;
+    right: 2400px;
+}
+@keyframes taxi-1
+{
+    0% {
+        transform: translate(2800px);
+    }
+}
+.bike {
+    animation: bike 7s linear 0s infinite normal both;
+}
+.bike-a {
+    position: absolute;
+    top: -40px;
+    right: 2000px;
+}
+.bike-b{
+    position: absolute;
+    top: -40px;
+    right: 2350px;
+}
+@keyframes bike {
+    0%{
+        transform: translate(2500px);
+    } 
+}
+.signs {
+    position: relative;
+    background-color: #716C8A;
+    background-image: url(grass-bg.jpg);
+    height: 50px;
+}
+.light-1 {
+    position: absolute;
+    left: 200px;
+}
+.light-2 {
+    position: absolute;
+    left: 800px;
+}
+.light-3 {
+    position: absolute;
+    right: 200px;
+}
+.light-4 {
+    position: absolute;
+    right: 800px;
+}
+.way-1 {
+    position: absolute;
+    left: 300px;
+}
+.way-2 {
+    position: absolute;
+    right: 300px;
+}
+.car {
+    animation: car 2s linear -2s infinite reverse none;
+    position: absolute;
+    top: 170px;
+    right: 2000px;
+}
+@keyframes car{
+    0%{
+        transform: translate(2200px);
+    }
+}
+.taxi-2{
+    animation: taxi-2 3s linear0s infinite reverse;
+}
+.taxi-2a {
+    position: absolute;
+    top: 40px;
+    right: 1800px;
+}
+.taxi-2b {
+    position: absolute;
+    top: 30px;
+    right: 1500px;
+}
+.taxi-2c {
+    position: absolute;
+    top: 100px;
+    right: 2000px;
+}
+@keyframes taxi-2 {
+    0% {
+        transform: translate(2200px);
+    }
+}
+.bicycle {
+    animation: bicycle 10s linear 2s infinite reverse;
+    position: absolute;
+    top: 170px;
+    right: 1800px;
+}
+@keyframes bicycle{
+    0%{
+        transform: translate(2000px);
+    }
+}
